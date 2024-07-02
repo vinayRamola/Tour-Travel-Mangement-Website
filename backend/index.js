@@ -14,10 +14,20 @@ import bookingRoute from './routes/booking.js'
 dotenv.config();
 const app= express();
 const port = process.env.PORT || 8000;
+// const corsOptions = {
+//     origin:true,
+//     credentials:true
+// }
+
 const corsOptions = {
-    origin:true,
-    credentials:true
-}
+    origin: 'https://deploy-mern-lwhq.vercel.app', // Replace with your front-end URL
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true, // Enable cookies if needed
+    optionsSuccessStatus: 204
+  };
+  
+
+app.use(cors(corsOptions));
 
 app.get("/",(req,res)=>{
     res.send("api is working");
